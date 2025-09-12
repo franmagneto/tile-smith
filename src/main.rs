@@ -1,5 +1,7 @@
 use std::env;
 
+use image::ImageReader;
+
 use crate::error::UsageError;
 
 pub(crate) mod error;
@@ -19,5 +21,6 @@ fn convert_tiles(
     in_image_path: &str,
     out_base_path: &str,
 ) -> Result<(), Box<dyn std::error::Error>> {
+    let image = ImageReader::open(in_image_path)?.decode()?;
     Ok(())
 }
